@@ -1,0 +1,302 @@
+
+/*======== Grid for northEvents ========*/
+#gridContainer {
+    display: grid;
+    grid-template-rows: [ header ] auto [ content ] auto [ footer ] auto;
+    grid-template-columns: [ nav ] 150px [ main ] 1fr;
+    grid-template-areas: "header header" "nav main" "footer footer";
+    column-gap: 10px;
+}
+
+
+
+#gridContainerHome {
+    display: grid;
+
+    grid-template-rows: [ header ] auto [ content ] auto [ footer ] auto;
+    grid-template-columns: [ nav ] 150px [ main ] auto [ uml ] auto [ xml ] auto;
+    grid-template-areas: "header header header"
+                         "nav main main"
+                         "nav uml xml"
+                         "footer footer footer";
+    grid-gap: 10px 10px;
+}
+
+/*======== header, body and footer CSS ========*/
+
+body {
+    background-color: #353b48;
+    font-family: "Calibri Light", sans-serif, helvetica;
+    color: aliceblue;
+}
+
+header {
+    grid-area: header;
+    min-height: 50px;
+    padding-left: 4px;
+    padding-bottom: 4px;
+}
+
+footer {
+    width: 100%;
+    grid-area: footer;
+    text-align: center;
+}
+
+/*======== Nav Bar CSS ========*/
+
+#navhead {
+    width: 100%;
+    text-align: center;
+}
+
+
+nav {
+    grid-area: nav;
+    color: aliceblue;
+    width: 150px;
+    text-align: center;
+
+}
+
+ul {
+    padding: 0;
+    list-style-type: none;
+    width: 150px;
+}
+
+
+li {
+    display: block;
+    width: 150px;
+}
+
+li a:link, li a:visited {
+    display: block;
+    padding: 10px 0 10px 0;
+    text-decoration: none;
+    color: aliceblue;
+    width: 100%;
+}
+
+li a:hover, li a:active {
+    display: block;
+    padding: 10px 0 10px 0;
+    background-color: aliceblue;
+    color: #353b48;
+    width: 150px;
+}
+
+/*======== Main and table contents CSS ========*/
+
+main {
+    grid-area: main;
+    background-color: aliceblue;
+    color: #353b48;
+    border-radius: 5px;
+}
+
+table {
+    padding: 5px 5px 0 5px;
+    border-collapse: collapse;
+    width: 100%;
+    display: table;
+    text-align: center;
+}
+
+th {
+    text-align: left;
+    padding: 5px;
+}
+
+td {
+    border-bottom: 1px solid #aaaaaa;
+    padding: 5px;
+}
+
+
+h3 {
+    font-size: 16px;
+    text-align: center;
+    width: 100%;
+    border-bottom: 1px solid #aaaaaa;
+}
+
+/*======== Login CSS ========*/
+
+.login {
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+
+.loginButton {
+    background: aliceblue;
+    padding: 2px 25px 2px 25px;
+    color:#000000;
+    font-size:15px;
+    text-decoration:none;
+}
+
+/*======== Select Event Form CSS ========*/
+
+.eventTitle {
+    width: 81ch;
+    text-align: left;
+}
+
+.venueName {
+    width: 35ch;
+    text-align: center;
+}
+
+.catDesc, .eventStartDate, .eventEndDate, .eventPrice {
+    width: 10ch;
+    text-align: center;
+}
+
+/*======== Edit Event Form CSS ========*/
+
+.editEventTableRow {
+    width: 100%;
+    border-bottom: 1px solid #aaaaaa;
+    margin: 0;
+    padding: 0;
+}
+
+.editEventHeaderID, .editEventHeaderEvent, .editEventHeaderDesc, .editEventHeaderVenue,
+.editEventHeaderCat, .editEventHeaderStartDate, .editEventHeaderEndDate, .editEventHeaderPrice {
+    width: 5%;
+    margin-right: 10%;
+    border: none;
+    text-align: right;
+
+}
+
+#submitButton {
+    float: left;
+    margin: 5px;
+}
+
+
+.editEventID, .editEventTitle, .editEventDescription, .editVenueName,
+.editCatDesc, .editEventStartDate, .editEventEndDate, .editEventPrice {
+    position: relative;
+    margin: 5px 0 5px 0;
+    float: left;
+    padding: 0;
+    resize: none;
+}
+
+.editEventID {
+    width: 3ch;
+    text-align: center;
+}
+
+.editEventTitle {
+    width: 50ch;
+}
+
+.editEventDescription {
+    width: 100ch;
+}
+
+.editVenueName {
+    width: 50ch;
+}
+
+.editEventStartDate {
+    width: 10ch;
+    text-align: center;
+}
+
+.editEventEndDate {
+    width: 10ch;
+    text-align: center;
+}
+
+.editEventPrice {
+    width: 5ch;
+    text-align: center;
+}
+
+.error {
+    text-align: center;
+    font-size: larger;
+}
+
+.sourceTitle {
+    margin: 0;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+#confirmation {
+    text-align: center;
+    font-size: large;
+}
+
+/*======== index CSS ========*/
+
+#welcomeMessage {
+    margin: 5px;
+    width: 100%;
+    text-align: center;
+}
+
+#aboutUs {
+    width: 100%;
+    text-align: left;
+}
+
+#aboutUsMessage {
+    margin: 5px;
+}
+
+/*======== log out page CSS ========*/
+
+#logoutMessage {
+    margin: 5px;
+    width: 100%;
+    text-align: center;
+}
+
+/*======== Credits Page CSS ========*/
+
+#credits {
+    margin: 0 0 0 5px;
+}
+
+/*======== Get Offers CSS ========*/
+
+.getOffersHeader {
+    text-align: center;
+    border-bottom: aliceblue solid;
+    background: #353b48;
+    color: aliceblue;
+}
+
+#offers {
+    grid-area: uml;
+    width: 99.3%;
+    text-align: center;
+    background: aliceblue;
+    border: solid aliceblue;
+    color: #353b48;
+    border-radius: 3px;
+}
+
+#XMLOffers {
+    grid-area: xml;
+    width: 99.3%;
+    text-align: center;
+    background: aliceblue;
+    border: solid aliceblue;
+    color: #353b48;
+    border-radius: 3px;
+}
+
+#bookEventsMain {
+    padding: 5px;
+}
+

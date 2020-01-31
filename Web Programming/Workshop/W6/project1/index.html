@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>index1</title>
+</head>
+<body>
+<script type="text/javascript">
+    "use strict";
+    let l_now = new Date();
+    l_now = "forget the time";
+    document.write("<p>" + l_now + "</p>");
+
+</script>
+<h1>I love cake.</h1>
+<br>
+<script type="text/javascript">
+    "use strict";
+    let description = "";
+    let y = 20;
+    let z = 10;
+    description = "<p>The difference is: ";
+    document.write(description + (y - z) + "</p><br>");
+        description = "<p>The sum is: ";
+    document.write(description + (y + z) + "</p><br>");
+</script>
+<br>
+<script type="text/javascript">
+    "use strict";
+    for (let t_i = 0; t_i < 10; t_i++) {
+        document.write("<p>" + t_i + ", " + "</p>");
+    }
+    document.write("<p>outside the loop: " + t_i + "<p>");
+</script>
+<br>
+<script type="text/javascript">
+    "use strict";
+    const l_number = 11;
+    let l_report = " is not a prime number";
+    if (l_number == 2) l_report = " is a prime number";
+    if (l_number == 3) l_report = " is a prime number";
+    if (l_number == 5) l_report = " is a prime number";
+    if (l_number == 7) l_report = " is a prime number";
+    if (l_number == 11) l_report = " is a prime number";
+    if (l_number == 13) l_report = " is a prime number";
+    if (l_number == 17) l_report = " is a prime number";
+    if (l_number == 19) l_report = " is a prime number";
+    document.write("<p>");
+    document.write(l_number);
+    document.write(l_report);
+    document.write("</p>");
+</script>
+<br>
+<script type="text/javascript">
+    "use strict";
+    let l_age = prompt("How old are you?");
+    let l_graduationAge = parseInt(l_age) + 2;
+    document.write("You will graduate from <a href='http://www.northumbria.ac.uk'>Northumbria University</a> when you are: " + l_graduationAge + "</a>");
+    document.write(`<p>... when you are ${l_graduationAge}</p>`);
+    console.log(typeof l_age);
+</script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+Sun Nov 3 15:45:55 GMT 2019|SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '93408109' for key 'PRIMARY'
+Sun Nov 3 15:46:42 GMT 2019|SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '93408109' for key 'PRIMARY'
+Sun Nov 3 15:49:18 GMT 2019|SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '93408109' for key 'PRIMARY'
+Sun Nov 3 15:50:50 GMT 2019|SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '93408109' for key 'PRIMARY'
+Sun Nov 3 15:51:05 GMT 2019|SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '93408109' for key 'PRIMARY'
+Sun Nov 3 15:51:30 GMT 2019|SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '93408109' for key 'PRIMARY'
+Sun Nov 3 15:52:27 GMT 2019|SQLSTATE[23000]: Integrity constraint violation: 1062 Duplicate entry '93408109' for key 'PRIMARY'
+Sun Nov 3 15:54:00 GMT 2019|SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'ng', 'MUC1BMK01', '3', 'daniel.ch'ng@srs.ac.uk')' at line 2

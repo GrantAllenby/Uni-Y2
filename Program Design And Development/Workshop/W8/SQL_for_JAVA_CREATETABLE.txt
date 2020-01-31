@@ -1,0 +1,340 @@
+drop table JOB_EXPENSES; 
+drop table EXPENSE_CAT; 
+drop table CHARGE_SHEET; 
+drop table JOB_TEAM ;
+drop table CONTRACT ;
+drop table CONSULTANT; 
+drop table JOB;
+drop table EMPLOYER ;
+create table "JOB"
+(
+"JOB_ID	"	INTEGER primary key,
+"JOB_DESC"	varchar(15)
+);
+create table "CONSULTANT"
+(
+"CONSULTANT_FNAME"	varchar(20),
+"CONSULTANT_SNAME"	varchar(20),
+"CONSULTANT_ID"		INTEGER primary key,
+"CONSULTANT_TOWN"	varchar(15),
+"CONSULTANT_JOB"	INTEGER references "JOB",
+"CONSULTANT_STATUS"	varchar(20) 	default 'ACTIVE'
+);
+create table "EMPLOYER"
+(
+"EMP_ID"		INTEGER primary key,
+"EMP_NAME" 	varchar(30),
+"EMP_ADDR1"	varchar(30),
+"EMP_ADDR2"	varchar(30),
+"EMP_PRIORITY"    INTEGER	 default 3 check("EMP_PRIORITY" between 0 and 9)
+);
+create table "CONTRACT"
+(
+"CONTRACT_ID"		INTEGER	 primary key,
+"CONTRACT_CLIENT"		INTEGER  references "EMPLOYER",
+"CONTRACT_LEAD"		INTEGER  references "CONSULTANT",
+"CONTRACT_JOB"		INTEGER	 references "JOB",
+"CONTRACT_START"		timestamp,
+"CONTRACT_END"		timestamp,
+"CONTRACT_UPDATE" 	timestamp 	default CURRENT_TIMEstamp,
+"CONTRACT_COMMENT" 	varchar(50)	default 'Standard Contract Terms'
+);
+create table "JOB_TEAM"
+(
+"TEAM_ID"		INTEGER	primary key,
+"TEAM_JOB" 	INTEGER	references "CONTRACT",
+"TEAM_MEMBER"	INTEGER	references "CONSULTANT"
+);
+
+create table "CHARGE_SHEET"
+(
+"CHARGE_ID" INTEGER primary key,
+"CHARGE_JOB" INTEGER,
+"CHARGE_FEE" INTEGER,
+"CHARGE_EXPENSES" INTEGER
+);
+create table "EXPENSE_CAT"
+(
+"CAT_ID" INTEGER primary key,
+"CAT_DESC" varchar(20)
+);
+
+create table "JOB_EXPENSES"
+(
+"EXPENSE_ID"		INTEGER primary key,
+"EXPENSE_JOB" 		INTEGER references "CONTRACT",
+"EXPENSE_TYPE" 		INTEGER references "EXPENSE_CAT",
+"EXPENSE_VALUE" 		INTEGER,
+"EXPENSE_SUBMITTED"	timestamp,
+"EXPENSE_APROVED"	timestamp,
+"EXPENSE_CONSULATANT"	INTEGER references "CONSULTANT"
+);
+insert into job values (1, 'Oracle');
+insert into job values (2, 'Mercenary');
+insert into job values (3, 'Army');
+insert into job values (4, 'Bar Staff');
+insert into job values (5, 'Sales');
+insert into job values (6, 'Self-Employed');
+insert into job values (7, 'Free lancer');
+insert into job values (8, 'UNDEFINED');
+insert into job values (9, 'Warrior');
+insert into job values (10,'Thief');
+insert into job values (11,'Monk');
+insert into job values (12,'Black Mage');
+insert into job values (13,'White Mage');
+insert into job values (14,'Red Mage');
+insert into job values (15,'Pilot');
+insert into Consultant values ('Cloud','Strife',1,'Nibelheim',4,'ACTIVE');
+insert into Consultant values ('Nyx','Ulric',2,'Lucis',3,'ACTIVE');
+insert into Consultant values ('Noctis Lucis','Caelum',3,'Lucis',3,'ACTIVE');
+insert into Consultant values ('Crowe','Altius',4,'Lucian Frontier',3,'ACTIVE');
+insert into Consultant values ('Lunafreya Nox','Fleuret',5,'Tenebrae',7,'ACTIVE');
+insert into Consultant values ('Tifa','Lockhart',6,null,5,'ACTIVE');
+insert into Consultant values ('Libertus', 'Ostium', 7,'Lucis',3,'ACTIVE');
+insert into Consultant values ('Luche', 'Lazarus', 8,null,2,'Blacklisted');
+insert into Consultant values ('Drautos', null, 9,null,12,'ACTIVE');
+insert into Consultant values ('Sonitus', 'Bellum', 10,null,1,'ACTIVE');
+insert into Consultant values('Firon',null,11,'Salamand',14,'ACTIVE');
+insert into Consultant values('Duane',null,12,null,3,'ACTIVE');
+insert into Consultant values('Elayne',null,13,null,7,'ACTIVE');
+insert into Consultant values('Gill',null,14,null,8,'ACTIVE');
+insert into Consultant values('Minwu',null,15,'Flynn',6,'ACTIVE');
+insert into Consultant values('Yuna','Braska',16,'Besaid',1,'ACTIVE');
+insert into Consultant values('Rikku',null,17,'Bikanel Island',10,'ACTIVE');
+insert into Consultant values('Paine',null,18,null,8,'ACTIVE');
+insert into Consultant values('Cid','Fabool',19,'Lindblum',15,'INACTIVE');
+insert into Consultant values('Cid','Kramer',20,null,15,'ACTIVE');
+insert into Consultant values('Cid',null,21,'Poft',15,'ACTIVE');
+insert into Consultant values('Cid',null,22,'Kazus',15,'ACTIVE');
+insert into Consultant values('Cid',null,23,'Baron Town',15,'ACTIVE');
+insert into Consultant values('Cid','Previa',24,'Airship Base',15,'ACTIVE');
+insert into Consultant values('Cid',null,25,null,15,'ACTIVE');
+insert into Consultant values('Cid','Highwind',26,null,15,'ACTIVE');
+insert into Consultant values('Cid',null,27,'Thunder Plains',15,'ACTIVE');
+insert into Consultant values('Cid',null,28,null,15,'ACTIVE');
+insert into Consultant values('Cidolfus','Demen Bunansa',29,null,15,'ACTIVE');
+insert into Consultant values('Cidolfus','Orlandeau',30,'Southern Sky',15,'ACTIVE');
+insert into Consultant values('Cid','Randell',31,'Invalice',15,'ACTIVE');
+insert into Consultant values('Magu','Magus',32,'Attowha Chasm',12,'ACTIVE');
+insert into Consultant values('Dogu','Magus',33,'Attowha Chasm',12,'ACTIVE');
+insert into Consultant values('Ragu','Magus',34,'Attowha Chasm',14,'ACTIVE');
+insert into Consultant values('Shikaree','X',35,null,11,'ACTIVE');
+insert into Consultant values('Shikaree','Y',36,null,11,'ACTIVE');
+insert into Consultant values('Shikaree','Z',37,null,11,'ACTIVE');
+insert into Consultant values('Judge','Bergan',38,'Mt Bur-Omisace',8,'INACTIVE/DECEASED');
+insert into Consultant values('Judge','Drace',39,null,8,'INACTIVE/DECEASED');
+insert into Consultant values('Judge','Gabranth',40,null,8,'INACTIVE/DECEASED');
+insert into Consultant values('Brasch','Fon Ronsenburg',41,null,8,'ACTIVE');
+insert into Consultant values('Ffamran',null,42,null,12,'Blacklisted');
+insert into Consultant values('Zell','Dincht',43,'Balamb Town',2,'ACTIVE');
+insert into employer values (1, 'AVALANCHE','7th Heaven Bar','Sector 7',5);
+insert into employer values (2, 'Strife Delivery Service','Edge',null,2);
+insert into employer values (3, 'Crisis Core', null, null,6);
+insert into employer values (4, 'SOLDIER','Nibelheim',null,6);
+insert into employer values (5, 'Kingsglaive', 'Lucis', null,7);
+insert into employer values (6, 'Niflheim Empire',null, null,7);
+insert into employer values (7, 'World Regenesis Organisation',null,null,9);
+insert into Employer values (8, 'Wild Rose Rebellion',null,null,2);
+insert into Employer values (9, 'Gullwings',null,null,1);
+insert into Employer values (10,'Church of Glabados',null,null,5);
+insert into Employer values (13,'Archadian Judges','Archadia','Archadian Empire',9);
+insert into Employer values (12,'Scions of the 7th Dawn','Vesper Bay','Wester Thanalan',8);
+insert into Employer values (11,'Shinra Electric Power Company','Heidegger',null,9);
+insert into Employer values (14,'Crownsguard','Lucis','Insomnia',4);
+insert into CONTRACT values (1,13,32,13, {fn TIMESTAMPADD(SQL_TSI_DAY, -250, CURRENT_TIMESTAMP)},null,null,'Standard Contract Terms');
+
+
+insert into contract values (2,13,33,14,{fn TIMESTAMPADD(SQL_TSI_DAY, -250, CURRENT_TIMESTAMP)},{fn TIMESTAMPADD(SQL_TSI_DAY, -97, CURRENT_TIMESTAMP)},null,'Standard Contract Terms');
+insert into contract values (3,13,34,14,{fn TIMESTAMPADD(SQL_TSI_DAY, -250, CURRENT_TIMESTAMP)},{fn TIMESTAMPADD(SQL_TSI_DAY, -97, CURRENT_TIMESTAMP)},null,'Standard Contract Terms');
+insert into contract values (4,13,38,3,{fn TIMESTAMPADD(SQL_TSI_DAY, -180, CURRENT_TIMESTAMP)},{fn TIMESTAMPADD(SQL_TSI_DAY, -100, CURRENT_TIMESTAMP)},null,'Leader Died  - liability assumed, payment made');
+insert into contract values (5,13,39,3,{fn TIMESTAMPADD(SQL_TSI_DAY, -180, CURRENT_TIMESTAMP)},{fn TIMESTAMPADD(SQL_TSI_DAY, -124, CURRENT_TIMESTAMP)},null,'Leader Killed in action, compensation outstanding');
+insert into contract values (6,13,40,3,{fn TIMESTAMPADD(SQL_TSI_DAY, -180, CURRENT_TIMESTAMP)},{fn TIMESTAMPADD(SQL_TSI_DAY, -150, CURRENT_TIMESTAMP)},null,'Leader Replaced by consultant 41, fraud detected');
+insert into contract values (7,13,41,3,{fn TIMESTAMPADD(SQL_TSI_DAY, -150, CURRENT_TIMESTAMP)},null,null,null);
+insert into contract values (8,13,42,3,{fn TIMESTAMPADD(SQL_TSI_DAY, -279, CURRENT_TIMESTAMP)},{fn TIMESTAMPADD(SQL_TSI_DAY, -250, CURRENT_TIMESTAMP)},null,'Team leader Broke Contract');
+insert into contract values (9,4,1,3,{fn TIMESTAMPADD(SQL_TSI_DAY, -120, CURRENT_TIMESTAMP)},null,null,null);
+insert into contract values (10,5,4,3,{fn TIMESTAMPADD(SQL_TSI_DAY, -200, CURRENT_TIMESTAMP)},null,null,null);
+insert into contract values (11,6,5,1,{fn TIMESTAMPADD(SQL_TSI_DAY, -120, CURRENT_TIMESTAMP)},null,null,null);
+insert into contract values (12,1,6,8,{fn TIMESTAMPADD(SQL_TSI_DAY, -89, CURRENT_TIMESTAMP)},null,null,null);
+insert into contract values (13,5,7,3,{fn TIMESTAMPADD(SQL_TSI_DAY, -7, CURRENT_TIMESTAMP)},null,null,null);
+insert into contract values (14,5,8,3,{fn TIMESTAMPADD(SQL_TSI_DAY, -7, CURRENT_TIMESTAMP)},null,null,null);
+insert into contract values (15,5,9,3,{fn TIMESTAMPADD(SQL_TSI_DAY, -21, CURRENT_TIMESTAMP)},null,null,null);
+insert into contract values (16,5,10,3,{fn TIMESTAMPADD(SQL_TSI_DAY, -32, CURRENT_TIMESTAMP)},null,null,null);
+insert into contract values (17,8,11,9,{fn TIMESTAMPADD(SQL_TSI_DAY, -14, CURRENT_TIMESTAMP)},null,null,null);
+insert into contract values (18,8,14,9,{fn TIMESTAMPADD(SQL_TSI_DAY, -14, CURRENT_TIMESTAMP)},null,null,null);
+insert into contract values (19,9,15,13,{fn TIMESTAMPADD(SQL_TSI_DAY, -15, CURRENT_TIMESTAMP)} ,null,null,null);
+insert into contract values (20,13,41,9,{fn TIMESTAMPADD(SQL_TSI_DAY, -16, CURRENT_TIMESTAMP)},null,null,null);
+insert into contract values (21,13,42,9,{fn TIMESTAMPADD(SQL_TSI_DAY, -17, CURRENT_TIMESTAMP)},null,null,null);
+insert into contract values (22,1,1,4,{fn TIMESTAMPADD(SQL_TSI_DAY, -240, CURRENT_TIMESTAMP)},{fn TIMESTAMPADD(SQL_TSI_DAY, -121, CURRENT_TIMESTAMP)},null,null);
+insert into contract values (23,2,1,8,{fn TIMESTAMPADD(SQL_TSI_DAY, -360, CURRENT_TIMESTAMP)},{fn TIMESTAMPADD(SQL_TSI_DAY, -241, CURRENT_TIMESTAMP)},null,null);
+insert into contract values (24,1,6,11,{fn TIMESTAMPADD(SQL_TSI_DAY, -240, CURRENT_TIMESTAMP)},{fn TIMESTAMPADD(SQL_TSI_DAY, -8, CURRENT_TIMESTAMP)},null,null);
+insert into contract values (25,4,43,11,{fn TIMESTAMPADD(SQL_TSI_DAY, -69, CURRENT_TIMESTAMP)},null,null,null);
+insert into contract values (26,5,3,3,{fn TIMESTAMPADD(SQL_TSI_DAY, -360, CURRENT_TIMESTAMP)},{fn TIMESTAMPADD(SQL_TSI_DAY, -20, CURRENT_TIMESTAMP)},null,'Leader Killed outside Insomnia, family compensated');
+insert into contract values (27,13,38,8,{fn TIMESTAMPADD(SQL_TSI_DAY, -390, CURRENT_TIMESTAMP)},{fn TIMESTAMPADD(SQL_TSI_DAY, -100, CURRENT_TIMESTAMP)},null,null);
+insert into contract values (28,13,39,8,{fn TIMESTAMPADD(SQL_TSI_DAY, -390, CURRENT_TIMESTAMP)},{fn TIMESTAMPADD(SQL_TSI_DAY, -100, CURRENT_TIMESTAMP)},null,null);
+insert into contract values (29,13,40,8,{fn TIMESTAMPADD(SQL_TSI_DAY, -390, CURRENT_TIMESTAMP)},{fn TIMESTAMPADD(SQL_TSI_DAY, -100, CURRENT_TIMESTAMP)},null,null);
+insert into contract values (30,1,26,15,{fn TIMESTAMPADD(SQL_TSI_DAY, -270, CURRENT_TIMESTAMP)},{fn TIMESTAMPADD(SQL_TSI_DAY, -181, CURRENT_TIMESTAMP)},null,null);
+insert into job_team values (1,2,19);
+insert into job_team values (2,2,36);
+insert into job_team values (3,2,43);
+insert into job_team values (4,3,1);
+insert into job_team values (5,3,4);
+insert into job_team values (6,3,25);
+insert into job_team values (7,3,28);
+insert into job_team values (8,4,3);
+insert into job_team values (9,4,27);
+insert into job_team values (10,5,30);
+insert into job_team values (11,5,38);
+insert into job_team values (12,5,14);
+insert into job_team values (13,5,7);
+insert into job_team values (14,5,6);
+insert into job_team values (15,6,8);
+insert into job_team values (16,6,33);
+insert into job_team values (17,8,9);
+insert into job_team values (18,8,31);
+insert into job_team values (19,8,13);
+insert into job_team values (20,26,12);
+insert into job_team values (21,22,2);
+insert into job_team values (22,23,39);
+insert into job_team values (23,23,37);
+insert into job_team values (24,23,11);
+insert into job_team values (25,24,7);
+insert into job_team values (26,27,15);
+insert into job_team values (27,27,10);
+insert into job_team values (28,28,40);
+insert into job_team values (29,28,35);
+insert into job_team values (30,29,18);
+insert into job_team values (31,30,8);
+insert into job_team values (32,30,20);
+insert into job_team values (33,30,17);
+insert into job_team values (34,1,2);
+insert into job_team values (35,1,12);
+insert into job_team values (36,1,13);
+insert into job_team values (37,1,17);
+insert into job_team values (38,1,16);
+insert into job_team values (39,7,3);
+insert into job_team values (40,7,13);
+insert into job_team values (41,9,18);
+insert into job_team values (42,25,21);
+insert into job_team values (43,25,36);
+insert into job_team values (44,19,34);
+insert into job_team values (45,19,29);
+insert into job_team values (46,18,31);
+insert into job_team values (47,9,30);
+insert into job_team values (48,10,20);
+insert into job_team values (49,10,33);
+insert into job_team values (50,10,25);
+insert into job_team values (51,14,37);
+insert into job_team values (52,16,22);
+insert into job_team values (53,21,23);
+insert into job_team values (54,11,25);
+insert into job_team values (55,11,24);
+insert into job_team values (56,11,27);
+insert into job_team values (57,11,35);
+insert into job_team values (58,11,26);
+insert into job_team values (59,11,33);
+insert into job_team values (60,11,42);
+insert into charge_sheet values (1,2,10000,63650);
+insert into charge_sheet values (2,3,10000,10150);
+insert into charge_sheet values (3,4,10000,2490	);
+insert into charge_sheet values (4,5,10000,13940);
+insert into charge_sheet values (5,6,10000,20260);
+insert into charge_sheet values (6,8,10000,25275);
+insert into charge_sheet values (7,22,10000,13600);
+insert into charge_sheet values (8,23,10000,26200);
+insert into charge_sheet values (9,24,10000,11200);
+insert into charge_sheet values (10,26,10000,4100);
+insert into charge_sheet values (11,27,10000,13170);
+insert into charge_sheet values (12,28,10000,25300);
+insert into charge_sheet values (13,29,10000,14200);
+insert into charge_sheet values (14,30,10000,26125);
+insert into expense_cat values (1,'SUSTAINENCE');
+insert into expense_cat values (2,'WEPONS');
+insert into expense_cat values (3,'SUNDRIES');
+insert into expense_cat values (4,'BRIBES');
+insert into expense_cat values (5,'OTHER');
+
+           
+insert into job_expenses values (1,2	,1,9700	,{fn TIMESTAMPADD(SQL_TSI_DAY, -90, CURRENT_TIMESTAMP)} 	,{fn TIMESTAMPADD(SQL_TSI_DAY, -90, CURRENT_TIMESTAMP)},33	);
+insert into job_expenses values (2,3	,1,9700	,{fn TIMESTAMPADD(SQL_TSI_DAY, -90, CURRENT_TIMESTAMP)}	,{fn TIMESTAMPADD(SQL_TSI_DAY, -90, CURRENT_TIMESTAMP)},34);
+insert into job_expenses values (3,4	,1,1000	,{fn TIMESTAMPADD(SQL_TSI_DAY, -95, CURRENT_TIMESTAMP)} 	,{fn TIMESTAMPADD(SQL_TSI_DAY, -95, CURRENT_TIMESTAMP)},38	);
+insert into job_expenses values (4,5	,1,12450,{fn TIMESTAMPADD(SQL_TSI_DAY, -124, CURRENT_TIMESTAMP)}	,{fn TIMESTAMPADD(SQL_TSI_DAY, -124, CURRENT_TIMESTAMP)},39);
+insert into job_expenses values (5,6	,1,20010,{fn TIMESTAMPADD(SQL_TSI_DAY, -150, CURRENT_TIMESTAMP)} 	,{fn TIMESTAMPADD(SQL_TSI_DAY, -150, CURRENT_TIMESTAMP)},40	);
+insert into job_expenses values (6,8	,1,25000,{fn TIMESTAMPADD(SQL_TSI_DAY, -250, CURRENT_TIMESTAMP)}	,{fn TIMESTAMPADD(SQL_TSI_DAY, -250, CURRENT_TIMESTAMP)},42);
+insert into job_expenses values (7,22	,1,12100,{fn TIMESTAMPADD(SQL_TSI_DAY, -100, CURRENT_TIMESTAMP)}	,{fn TIMESTAMPADD(SQL_TSI_DAY, -100, CURRENT_TIMESTAMP)},	1);
+insert into job_expenses values (8,23	,1,25000,{fn TIMESTAMPADD(SQL_TSI_DAY, -241, CURRENT_TIMESTAMP)}	,{fn TIMESTAMPADD(SQL_TSI_DAY, -240, CURRENT_TIMESTAMP)},1	);
+insert into job_expenses values (9,24	,1,1000	,CURRENT_TIMESTAMP	,CURRENT_TIMESTAMP	,1);
+insert into job_expenses values (10,26	,1,2000	,{fn TIMESTAMPADD(SQL_TSI_DAY, -15, CURRENT_TIMESTAMP)}	,{fn TIMESTAMPADD(SQL_TSI_DAY, -150, CURRENT_TIMESTAMP)},3	);
+insert into job_expenses values (11,27	,1,10020,{fn TIMESTAMPADD(SQL_TSI_DAY, -90, CURRENT_TIMESTAMP)} 	,{fn TIMESTAMPADD(SQL_TSI_DAY, -90, CURRENT_TIMESTAMP)}	,38);
+insert into job_expenses values (12,28	,1,23000,{fn TIMESTAMPADD(SQL_TSI_DAY, -95, CURRENT_TIMESTAMP)}	,{fn TIMESTAMPADD(SQL_TSI_DAY, -94, CURRENT_TIMESTAMP)}	,39);
+insert into job_expenses values (13,29	,1,12050,{fn TIMESTAMPADD(SQL_TSI_DAY, -95, CURRENT_TIMESTAMP)}	,{fn TIMESTAMPADD(SQL_TSI_DAY, -95, CURRENT_TIMESTAMP)}	,40);
+insert into job_expenses values (14,30	,1,25000,{fn TIMESTAMPADD(SQL_TSI_DAY, -181, CURRENT_TIMESTAMP)}	,{fn TIMESTAMPADD(SQL_TSI_DAY, -96, CURRENT_TIMESTAMP)}	,26);
+insert into job_expenses values (15,2	,2,50000,{fn TIMESTAMPADD(SQL_TSI_DAY, -130, CURRENT_TIMESTAMP)}	,{fn TIMESTAMPADD(SQL_TSI_DAY, -97, CURRENT_TIMESTAMP)},33	);
+insert into job_expenses values (16,2	,2,1500	,{fn TIMESTAMPADD(SQL_TSI_DAY, -120, CURRENT_TIMESTAMP)} 	,{fn TIMESTAMPADD(SQL_TSI_DAY, -98, CURRENT_TIMESTAMP)},33	);
+insert into job_expenses values (17,2	,3,50	,{fn TIMESTAMPADD(SQL_TSI_DAY, -93, CURRENT_TIMESTAMP)} 	,{fn TIMESTAMPADD(SQL_TSI_DAY, -90, CURRENT_TIMESTAMP)}	,33);
+insert into job_expenses values (18,2	,4,1000	,{fn TIMESTAMPADD(SQL_TSI_DAY, -140, CURRENT_TIMESTAMP)} 	,{fn TIMESTAMPADD(SQL_TSI_DAY, -91, CURRENT_TIMESTAMP)}	,33);
+insert into job_expenses values (19,2	,4,1000	,{fn TIMESTAMPADD(SQL_TSI_DAY, -120, CURRENT_TIMESTAMP)}	,{fn TIMESTAMPADD(SQL_TSI_DAY, -92, CURRENT_TIMESTAMP)}	,33);
+insert into job_expenses values (20,4	,2,1200	,{fn TIMESTAMPADD(SQL_TSI_DAY, -129, CURRENT_TIMESTAMP)}	,{fn TIMESTAMPADD(SQL_TSI_DAY, -120, CURRENT_TIMESTAMP)},38	);
+insert into job_expenses values (21,4	,2,40	,{fn TIMESTAMPADD(SQL_TSI_DAY, -100, CURRENT_TIMESTAMP)} 	,{fn TIMESTAMPADD(SQL_TSI_DAY, -97, CURRENT_TIMESTAMP)}	,38);
+insert into job_expenses values (22,27	,4,1000	,{fn TIMESTAMPADD(SQL_TSI_DAY, -90, CURRENT_TIMESTAMP)}	,{fn TIMESTAMPADD(SQL_TSI_DAY, -90, CURRENT_TIMESTAMP)}	,38);
+insert into job_expenses values (23,28	,5,250	,{fn TIMESTAMPADD(SQL_TSI_DAY, -95, CURRENT_TIMESTAMP)}	,{fn TIMESTAMPADD(SQL_TSI_DAY, -94, CURRENT_TIMESTAMP)}	,39);
+insert into job_expenses values (24,3	,3,100	,{fn TIMESTAMPADD(SQL_TSI_DAY, -95, CURRENT_TIMESTAMP)} 	,{fn TIMESTAMPADD(SQL_TSI_DAY, -95, CURRENT_TIMESTAMP)}	,34);
+insert into job_expenses values (25,3	,5,50	,{fn TIMESTAMPADD(SQL_TSI_DAY, -100, CURRENT_TIMESTAMP)} 	,{fn TIMESTAMPADD(SQL_TSI_DAY, -90, CURRENT_TIMESTAMP)}	,34);
+insert into job_expenses values (26,22	,3,1200	,{fn TIMESTAMPADD(SQL_TSI_DAY, -100, CURRENT_TIMESTAMP)}	,{fn TIMESTAMPADD(SQL_TSI_DAY, -100, CURRENT_TIMESTAMP)}	,1);
+insert into job_expenses values (27,23	,3,500	,{fn TIMESTAMPADD(SQL_TSI_DAY, -241, CURRENT_TIMESTAMP)} 	,{fn TIMESTAMPADD(SQL_TSI_DAY, -240, CURRENT_TIMESTAMP)}	,1);
+insert into job_expenses values (28,29	,3,50	,{fn TIMESTAMPADD(SQL_TSI_DAY, -95, CURRENT_TIMESTAMP)}	,{fn TIMESTAMPADD(SQL_TSI_DAY, -95, CURRENT_TIMESTAMP)}	,40);
+insert into job_expenses values (29,30	,3,125	,{fn TIMESTAMPADD(SQL_TSI_DAY, -181, CURRENT_TIMESTAMP)}	,{fn TIMESTAMPADD(SQL_TSI_DAY, -96, CURRENT_TIMESTAMP)}	,26);
+insert into job_expenses values (30,5	,2,1200	,{fn TIMESTAMPADD(SQL_TSI_DAY, -129, CURRENT_TIMESTAMP)} 	,{fn TIMESTAMPADD(SQL_TSI_DAY, -120, CURRENT_TIMESTAMP)}	,39);
+insert into job_expenses values (31,5	,2,40	,{fn TIMESTAMPADD(SQL_TSI_DAY, -100, CURRENT_TIMESTAMP)} 	,{fn TIMESTAMPADD(SQL_TSI_DAY, -97, CURRENT_TIMESTAMP)}	,39);
+insert into job_expenses values (32,2	,4,200	,{fn TIMESTAMPADD(SQL_TSI_DAY, -90, CURRENT_TIMESTAMP)} ,{fn TIMESTAMPADD(SQL_TSI_DAY, -90, CURRENT_TIMESTAMP)}	,33);
+insert into job_expenses values (33,3	,4,200	,{fn TIMESTAMPADD(SQL_TSI_DAY, -90, CURRENT_TIMESTAMP)} 	,{fn TIMESTAMPADD(SQL_TSI_DAY, -90, CURRENT_TIMESTAMP)}	,34);
+insert into job_expenses values (34,4	,4,200	,{fn TIMESTAMPADD(SQL_TSI_DAY, -95, CURRENT_TIMESTAMP)} 	,{fn TIMESTAMPADD(SQL_TSI_DAY, -95, CURRENT_TIMESTAMP)},38);
+insert into job_expenses values (35,5	,4,200	,{fn TIMESTAMPADD(SQL_TSI_DAY, -124, CURRENT_TIMESTAMP)} 	,{fn TIMESTAMPADD(SQL_TSI_DAY, -124, CURRENT_TIMESTAMP)}	,39);
+insert into job_expenses values (36,6	,4,200	,{fn TIMESTAMPADD(SQL_TSI_DAY, -150, CURRENT_TIMESTAMP)} 	,{fn TIMESTAMPADD(SQL_TSI_DAY, -150, CURRENT_TIMESTAMP)}	,40);
+insert into job_expenses values (37,8	,4,200	,{fn TIMESTAMPADD(SQL_TSI_DAY, -250, CURRENT_TIMESTAMP)}	,{fn TIMESTAMPADD(SQL_TSI_DAY, -250, CURRENT_TIMESTAMP)}	,42);
+insert into job_expenses values (38,22	,4,200	,{fn TIMESTAMPADD(SQL_TSI_DAY, -100, CURRENT_TIMESTAMP)}	,{fn TIMESTAMPADD(SQL_TSI_DAY, -100, CURRENT_TIMESTAMP)}	,1);
+insert into job_expenses values (39,23	,4,350	,{fn TIMESTAMPADD(SQL_TSI_DAY, -241, CURRENT_TIMESTAMP)}	,{fn TIMESTAMPADD(SQL_TSI_DAY, -240, CURRENT_TIMESTAMP)}	,1);
+insert into job_expenses values (40,24	,4,500	,CURRENT_TIMESTAMP	,CURRENT_TIMESTAMP ,1	);
+insert into job_expenses values (41,26	,4,2000	,{fn TIMESTAMPADD(SQL_TSI_DAY, -15, CURRENT_TIMESTAMP)},{fn TIMESTAMPADD(SQL_TSI_DAY, -10, CURRENT_TIMESTAMP)},3	);
+insert into job_expenses values (42,27	,4,2000	,{fn TIMESTAMPADD(SQL_TSI_DAY, -90, CURRENT_TIMESTAMP)} 	,{fn TIMESTAMPADD(SQL_TSI_DAY, -90, CURRENT_TIMESTAMP)}	,38);
+insert into job_expenses values (43,28	,4,2000	,{fn TIMESTAMPADD(SQL_TSI_DAY, -95, CURRENT_TIMESTAMP)}	,{fn TIMESTAMPADD(SQL_TSI_DAY, -94, CURRENT_TIMESTAMP)}	,39);
+insert into job_expenses values (44,29	,4,2000	,{fn TIMESTAMPADD(SQL_TSI_DAY, -95, CURRENT_TIMESTAMP)}	,{fn TIMESTAMPADD(SQL_TSI_DAY, -95, CURRENT_TIMESTAMP)},40	);
+insert into job_expenses values (45,30	,4,500	,{fn TIMESTAMPADD(SQL_TSI_DAY, -181, CURRENT_TIMESTAMP)}	,{fn TIMESTAMPADD(SQL_TSI_DAY, -96, CURRENT_TIMESTAMP)},26	);
+insert into job_expenses values (46,2	,5,200	,{fn TIMESTAMPADD(SQL_TSI_DAY, -90, CURRENT_TIMESTAMP)} 	,{fn TIMESTAMPADD(SQL_TSI_DAY, -90, CURRENT_TIMESTAMP)},33	);
+insert into job_expenses values (47,3	,5,100	,{fn TIMESTAMPADD(SQL_TSI_DAY, -90, CURRENT_TIMESTAMP)} 	,{fn TIMESTAMPADD(SQL_TSI_DAY, -90, CURRENT_TIMESTAMP)},34	);
+insert into job_expenses values (48,4	,5,50	,{fn TIMESTAMPADD(SQL_TSI_DAY, -95, CURRENT_TIMESTAMP)} 	,{fn TIMESTAMPADD(SQL_TSI_DAY, -95, CURRENT_TIMESTAMP)},38	);
+insert into job_expenses values (49,5	,5,50	,{fn TIMESTAMPADD(SQL_TSI_DAY, -124, CURRENT_TIMESTAMP)}	,{fn TIMESTAMPADD(SQL_TSI_DAY, -124, CURRENT_TIMESTAMP)},39	);
+insert into job_expenses values (50,6	,5,50	,{fn TIMESTAMPADD(SQL_TSI_DAY, -150, CURRENT_TIMESTAMP)} 	,{fn TIMESTAMPADD(SQL_TSI_DAY, -150, CURRENT_TIMESTAMP)}	,40);
+insert into job_expenses values (51,8	,5,75	,{fn TIMESTAMPADD(SQL_TSI_DAY, -250, CURRENT_TIMESTAMP)}	,{fn TIMESTAMPADD(SQL_TSI_DAY, -250, CURRENT_TIMESTAMP)}	,42);
+insert into job_expenses values (52,22	,5,100	,{fn TIMESTAMPADD(SQL_TSI_DAY, -100, CURRENT_TIMESTAMP)}	,{fn TIMESTAMPADD(SQL_TSI_DAY, -100, CURRENT_TIMESTAMP)},1	);
+insert into job_expenses values (53,23	,5,350	,{fn TIMESTAMPADD(SQL_TSI_DAY, -241, CURRENT_TIMESTAMP)} 	,{fn TIMESTAMPADD(SQL_TSI_DAY, -240, CURRENT_TIMESTAMP)},1	);
+insert into job_expenses values (54,24	,5,200	,CURRENT_TIMESTAMP	,CURRENT_TIMESTAMP,7	);
+insert into job_expenses values (55,26	,5,100	,{fn TIMESTAMPADD(SQL_TSI_DAY, -15, CURRENT_TIMESTAMP)} 	,{fn TIMESTAMPADD(SQL_TSI_DAY, -140, CURRENT_TIMESTAMP)},3	);
+insert into job_expenses values (56,27	,5,150	,{fn TIMESTAMPADD(SQL_TSI_DAY, -90, CURRENT_TIMESTAMP)} 	,{fn TIMESTAMPADD(SQL_TSI_DAY, -90, CURRENT_TIMESTAMP)},38	);
+insert into job_expenses values (57,28	,5,50	,{fn TIMESTAMPADD(SQL_TSI_DAY, -95, CURRENT_TIMESTAMP)}	,{fn TIMESTAMPADD(SQL_TSI_DAY, -94, CURRENT_TIMESTAMP)},39	);
+insert into job_expenses values (58,29	,5,100	,{fn TIMESTAMPADD(SQL_TSI_DAY, -95, CURRENT_TIMESTAMP)}	,{fn TIMESTAMPADD(SQL_TSI_DAY, -95, CURRENT_TIMESTAMP)},40	);
+insert into job_expenses values (59,30	,5,500	,{fn TIMESTAMPADD(SQL_TSI_DAY, -181, CURRENT_TIMESTAMP)}	,{fn TIMESTAMPADD(SQL_TSI_DAY, -96, CURRENT_TIMESTAMP)}	,26);
+insert into job_expenses values (60,1	,2,1000	,{fn TIMESTAMPADD(SQL_TSI_DAY, -7, CURRENT_TIMESTAMP)} 	,null	, 2);
+insert into job_expenses values (61,9	,2,1200	,{fn TIMESTAMPADD(SQL_TSI_DAY, -8, CURRENT_TIMESTAMP)}	,null	,1);
+insert into job_expenses values (62,10	,2,500	,{fn TIMESTAMPADD(SQL_TSI_DAY, -9, CURRENT_TIMESTAMP)} 	,null	,25);
+insert into job_expenses values (63,11	,2,120	,{fn TIMESTAMPADD(SQL_TSI_DAY, -10, CURRENT_TIMESTAMP)} 	,null,42	);
+insert into job_expenses values (64,12	,2,30000,{fn TIMESTAMPADD(SQL_TSI_DAY, -11, CURRENT_TIMESTAMP)} 	,null	,6);
+insert into job_expenses values (65,13	,2,500	,CURRENT_TIMESTAMP	,null,7	);
+insert into job_expenses values (66,14	,2,100	,CURRENT_TIMESTAMP	,null,37	);
+insert into job_expenses values (67,15	,2,1500	,CURRENT_TIMESTAMP	,null,9	);
+insert into job_expenses values (68,16	,2,200	,{fn TIMESTAMPADD(SQL_TSI_DAY, -5, CURRENT_TIMESTAMP)} 	,null,22	);
+insert into job_expenses values (69,17	,2,250	,{fn TIMESTAMPADD(SQL_TSI_DAY, -16, CURRENT_TIMESTAMP)} 	,null,11	);
+insert into job_expenses values (70,18	,2,130	,{fn TIMESTAMPADD(SQL_TSI_DAY, -7, CURRENT_TIMESTAMP)} 	,null,31	);
+insert into job_expenses values (71,19	,2,10000,{fn TIMESTAMPADD(SQL_TSI_DAY, -18, CURRENT_TIMESTAMP)}	,null,34	);
+insert into job_expenses values (72,20	,2,12000,{fn TIMESTAMPADD(SQL_TSI_DAY, -19, CURRENT_TIMESTAMP)} 	,null,41	);
+insert into job_expenses values (73,21	,2,500	,{fn TIMESTAMPADD(SQL_TSI_DAY, -20, CURRENT_TIMESTAMP)} 	,null,23	);
+insert into job_expenses values (74,24	,4,1000	,{fn TIMESTAMPADD(SQL_TSI_DAY, -100, CURRENT_TIMESTAMP)}	,{fn TIMESTAMPADD(SQL_TSI_DAY, 90, CURRENT_TIMESTAMP)}	,7);
+insert into job_expenses values (75,24	,4,1000	,{fn TIMESTAMPADD(SQL_TSI_DAY, -200, CURRENT_TIMESTAMP)} ,{fn TIMESTAMPADD(SQL_TSI_DAY, 90, CURRENT_TIMESTAMP)}	,7);
+insert into job_expenses values (76,24	,4,5000	,{fn TIMESTAMPADD(SQL_TSI_DAY, -140, CURRENT_TIMESTAMP)} ,{fn TIMESTAMPADD(SQL_TSI_DAY, -92, CURRENT_TIMESTAMP)}	,7);
+insert into job_expenses values (77,24	,4,2500	,{fn TIMESTAMPADD(SQL_TSI_DAY, -10, CURRENT_TIMESTAMP)} ,null	,7);
+insert into job_expenses values (78,7	,5,50	,{fn TIMESTAMPADD(SQL_TSI_DAY, -50, CURRENT_TIMESTAMP)} ,{fn TIMESTAMPADD(SQL_TSI_DAY, -40, CURRENT_TIMESTAMP)}	,3);
+insert into job_expenses values (79,7	,3,100	,{fn TIMESTAMPADD(SQL_TSI_DAY, -51, CURRENT_TIMESTAMP)} ,{fn TIMESTAMPADD(SQL_TSI_DAY, -41, CURRENT_TIMESTAMP)}	,13);
+insert into job_expenses values (80,10	,5,150	,{fn TIMESTAMPADD(SQL_TSI_DAY, -52, CURRENT_TIMESTAMP)},{fn TIMESTAMPADD(SQL_TSI_DAY, -42, CURRENT_TIMESTAMP)} ,25	);
+insert into job_expenses values (81,10	,5,50	,{fn TIMESTAMPADD(SQL_TSI_DAY, -53, CURRENT_TIMESTAMP)}	,{fn TIMESTAMPADD(SQL_TSI_DAY, -43, CURRENT_TIMESTAMP)} ,33	);
+
+
+

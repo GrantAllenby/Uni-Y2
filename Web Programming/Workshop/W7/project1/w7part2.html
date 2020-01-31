@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>
+    If you come to my house I will give you something nice.
+</p>
+
+<ul>
+    <li id="cake">Some nice chocolate cake</li>
+    <li id="coffee">A fresh-brewed cup of coffee</li>
+    <li id="compliment">An honest compliment</li>
+    <li id="car">A brand new Porsche</li>
+</ul>
+
+<p>
+    One of those may have been a joke.
+</p>
+
+
+
+
+<script type="text/javascript">
+    "use strict";
+
+    function hover() {
+        "use strict";
+        document.getElementById("cake").onmouseover = hover;
+        document.getElementById("cake").style.fontWeight = "Bold";
+        document.getElementById("coffee").onmouseover = hover;
+        document.getElementById("coffee").style.fontWeight = "Bold";
+        document.getElementById("compliment").onmouseover = hover;
+        document.getElementById("compliment").style.fontWeight = "bold";
+        document.getElementById("car").onmouseover = hover;
+        document.getElementById("car").style.fontWeight = "bold";
+    }
+
+    function leave() {
+        "use strict";
+        document.getElementById("cake").onmouseleave = leave;
+        document.getElementById("cake").style.fontWeight = "normal";
+        document.getElementById("coffee").onmouseleave = leave;
+        document.getElementById("coffee").style.fontWeight = "normal";
+        document.getElementById("compliment").onmouseleave = leave;
+        document.getElementById("compliment").style.fontWeight = "normal";
+        document.getElementById("car").onmouseleave = leave;
+        document.getElementById("car").style.fontWeight = "normal";
+    }
+    hover();
+    leave();
+
+</script>
+</body>
+</html>

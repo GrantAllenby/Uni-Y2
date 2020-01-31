@@ -1,0 +1,32 @@
+Mon Nov 18 16:14:53 GMT 2019 : Apache Derby Network Server - 10.14.2.0 - (1828579) started and ready to accept connections on port 1527
+----------------------------------------------------------------
+Mon Nov 18 16:15:39 GMT 2019:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-016e-7f4b-a110-000062c9ca4f 
+on database directory U:\My Documents\Y2\Program Design And Development\W8JavaDB\app with class loader sun.misc.Launcher$AppClassLoader@1d44bcfa 
+Loaded from file:/U:/My%20Documents/Y2/Program%20Design%20And%20Development/db-derby-10.14.2.0-bin/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_211-b12
+user.dir=U:\My Documents\Y2\Program Design And Development\db-derby-10.14.2.0-bin
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=U:\My Documents\Y2\Program Design And Development\W8JavaDB
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
+Mon Nov 18 16:16:07 GMT 2019:
+Shutting down instance a816c00e-016e-7f4b-a110-000062c9ca4f on database directory U:\My Documents\Y2\Program Design And Development\W8JavaDB\app with class loader sun.misc.Launcher$AppClassLoader@1d44bcfa 
+Mon Nov 18 16:16:09 GMT 2019 Thread[DRDAConnThread_3,5,main] (DATABASE = app), (DRDAID = {2}), Database 'app' shutdown.
+----------------------------------------------------------------
+Mon Nov 18 16:18:04 GMT 2019:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a65c80ac-016e-7f4b-a110-000062c9ca4f 
+on database directory U:\My Documents\Y2\Program Design And Development\W8JavaDB\app with class loader sun.misc.Launcher$AppClassLoader@1d44bcfa 
+Loaded from file:/U:/My%20Documents/Y2/Program%20Design%20And%20Development/db-derby-10.14.2.0-bin/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.8.0_211-b12
+user.dir=U:\My Documents\Y2\Program Design And Development\db-derby-10.14.2.0-bin
+os.name=Windows 10
+os.arch=amd64
+os.version=10.0
+derby.system.home=U:\My Documents\Y2\Program Design And Development\W8JavaDB
+Database Class Loader started - derby.database.classpath=''
+----------------------------------------------------------------
