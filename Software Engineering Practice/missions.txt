@@ -1,0 +1,19 @@
+M1 - Project management - Cassidy
+
+M2 - Requirements Analysis - Team
+
+M3 - Software Analysis - Team
+
+M4 - Testing - Ada
+
+M5 - Admin team client processing component - Ella
+
+M6 - Case worker client processing component - Ella
+
+M7 - Volunteer availability component - Grant
+
+M8 - Data component - Cassidy
+
+M9 - Cancellation component - Grant
+
+M10 - Statistics component - Ada 

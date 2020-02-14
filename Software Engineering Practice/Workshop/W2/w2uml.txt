@@ -1,0 +1,47 @@
+---------------------------
+Student
+---------------------------
+-String: name
+---------------------------
++Student(String: name)
+---------------------------
+//////////////////////////
+---------------------------
+Mark
+---------------------------
+-integer: mark
+---------------------------
++Mark(integer: mark)
+---------------------------
+//////////////////////////
+---------------------------
+Recorder
+---------------------------
+-ui: RecorderUI
+-integer: number
+-markCollection: Mark [ ]
+---------------------------
++Recorder(ui: RecorderUI)
++createClass(integer: number)
++setSize()
++getRecord(integer: number)
++setName(student: Student)
++setMark(mark: Mark)
++getStatistics()
+---------------------------
+//////////////////////////
+---------------------------
+RecorderUI
+---------------------------
+-Jbutton: getStatistics
+-JTextField: studentNumberEntry
+-JTextField: studentNameEntry
+-JTextField: studentMarkEntry
+-JPanel: statisticsMessage
+---------------------------
++Display()
++displayMarksEntry()
++enterMark(String: name, integer: mark, integer: number)
++showStatistics()
+---------------------------
+//////////////////////////
